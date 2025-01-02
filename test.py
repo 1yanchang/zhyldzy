@@ -14,7 +14,7 @@ def test_model(model_path, data_dir):
     model = resnet18().to(device)
     num_ftrs = model.fc.in_features
     model.fc = nn.Linear(num_ftrs, 2)
-    model.load_state_dict(torch.load(model_path, weights_only=True)) # Load the model weights
+    model.load_state_dict(torch.load(model_path, weights_only=True, map_location=device))  # Load the model weights
     model.to(device)
     model.eval()
 

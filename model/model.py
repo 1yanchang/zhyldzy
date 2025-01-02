@@ -2,6 +2,7 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
+
 class ResidualBlock(nn.Module):
     def __init__(self, in_channels, out_channels, stride=1, downsample=None):
         super(ResidualBlock, self).__init__()
@@ -21,6 +22,7 @@ class ResidualBlock(nn.Module):
         out += identity
         out = F.relu(out)
         return out
+
 
 class ResNet(nn.Module):
     def __init__(self, block, layers, num_classes=2):
@@ -65,8 +67,10 @@ class ResNet(nn.Module):
         x = self.fc(x)
         return x
 
+
 def resnet18(num_classes=2):
     return ResNet(ResidualBlock, [2, 2, 2, 2], num_classes)
+
 
 if __name__ == '__main__':
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')

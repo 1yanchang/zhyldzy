@@ -12,8 +12,9 @@ import torchvision
 import torchvision.transforms as transforms
 from torch.utils import data
 
+
 class PneumoniaDataset:
-    def __init__(self, data_dir, test_size=0.1, batch_size=32, transform=None):
+    def __init__(self, data_dir, test_size=0.02, batch_size=32, transform=None):
         self.data_dir = data_dir
         self.batch_size = batch_size
         self.transform = transform if transform else self.default_transform()
@@ -79,6 +80,7 @@ class PneumoniaDataset:
         img = np.transpose(image_np, (1, 2, 0))
         plt.imshow(img)
         plt.show()
+
 
 if __name__ == "__main__":
     data_dir = '../rsna-pneumonia-detection-challenge'
